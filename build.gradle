@@ -1,0 +1,84 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-spring-scheduled:1.13.6'
+    implementation 'io.quarkus:quarkus-spring-data-rest:1.13.6'
+    implementation 'io.quarkus:quarkus-spring-boot-properties:1.13.6'
+    implementation 'io.quarkus:quarkus-arc:1.13.6'
+    implementation 'io.quarkus:quarkus-resteasy:1.13.6'
+    implementation 'io.quarkus:quarkus-resteasy-jackson:1.13.6'
+    implementation 'io.quarkus:quarkus-resteasy-jsonb:1.13.6'
+    testImplementation 'io.quarkus:quarkus-junit5:1.13.6'
+    testImplementation 'io.rest-assured:rest-assured:4.3.3'
+    
+    implementation 'io.quarkiverse.mybatis:quarkus-mybatis-parent:0.0.9'
+    implementation 'io.quarkiverse.mybatis:quarkus-mybatis:0.0.9'
+    //compile 'io.quarkus:quarkus-hibernate-validator:1.13.6'
+    compile ('io.quarkus:quarkus-hibernate-validator:1.13.6') {
+        exclude group: "com.sun.jersey"
+    }
+    implementation 'org.jboss.spec.javax.security.jacc:jboss-jacc-api_1.5_spec:2.0.0.Final'
+    implementation 'net.java.dev.jna:jna-platform:5.8.0'
+    
+    // swagger
+    implementation 'io.quarkus:quarkus-smallrye-openapi:1.13.6'
+    
+    //jwt
+    implementation 'io.quarkus:quarkus-smallrye-jwt:1.13.6'
+    implementation 'io.quarkus:quarkus-smallrye-jwt-build:1.13.6'
+    
+    //rest client
+    implementation 'io.quarkus:quarkus-rest-client:4.5.12'
+    implementation 'io.quarkus:quarkus-rest-client-jackson:4.5.12'
+    
+    //mysql
+    //implementation 'io.quarkus:quarkus-jdbc-mariadb:1.13.6'
+    implementation 'io.quarkus:quarkus-jdbc-mysql:1.13.6'
+    implementation 'io.quarkus:quarkus-narayana-jta:1.13.6'
+    
+    //redis
+    implementation 'io.quarkus:quarkus-redis-client:1.13.6'
+    
+    //jsoup
+    implementation 'org.jsoup:jsoup:1.13.1'
+    
+    // modelmapper
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
+    
+    //lombok
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+}
+configurations {
+//  	compile.exclude group: 'com.sun.jersey' 
+//  	all*.exclude group: 'org.scala-lang:scala-library:2.12.13'
+//  	exclude'org.scala-lang:scala-library:2.12.13'
+}
+
+
+group 'com.gomdoc'
+
+quarkusBuild {
+    nativeArgs {
+        containerBuild = true 
+        buildImage = "quay.io/quarkus/ubi-quarkus-native-image:21.0.0-java11" 
+    }
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
