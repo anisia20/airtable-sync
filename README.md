@@ -1,4 +1,4 @@
-# signal-news-crawler-new project
+# airtable-sync project
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
