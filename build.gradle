@@ -53,7 +53,9 @@ dependencies {
     
     // modelmapper
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
-    
+
+    implementation 'io.quarkus:quarkus-vertx'
+    implementation 'io.smallrye.reactive:smallrye-mutiny-vertx-web-client'
     //lombok
     compileOnly 'org.projectlombok:lombok:1.18.20'
 	annotationProcessor 'org.projectlombok:lombok:1.18.20'

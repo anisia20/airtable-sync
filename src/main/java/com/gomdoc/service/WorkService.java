@@ -3,7 +3,7 @@ package com.gomdoc.service;
 
 import com.gomdoc.component.ModelMapperG;
 import com.gomdoc.component.RedisCmd;
-import com.gomdoc.component.WebDocCmd;
+import com.gomdoc.component.WebClientCmd;
 import com.gomdoc.mapper.NewsInfoMapper;
 import com.gomdoc.utils.SignalUtil;
 import lombok.extern.jbosslog.JBossLog;
@@ -34,7 +34,7 @@ public class WorkService {
 	Jsonb jsonb;
     
     @Inject
-    WebDocCmd webDocCmd;
+	WebClientCmd webClientCmd;
 
 	public Response newsDb2MQ(String startdate, String enddate) {
 		String nowdate = startdate;

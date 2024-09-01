@@ -5,13 +5,11 @@ import java.util.Hashtable;
 import javax.inject.Inject;
 import javax.json.bind.Jsonb;
 
-import com.gomdoc.mapper.es.NewsEsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import com.gomdoc.config.Def;
-import com.gomdoc.mapper.es.WordCloudEsMapper;
 import com.gomdoc.model.redis.SignalCommonVo;
 import com.gomdoc.service.WorkService;
 import com.gomdoc.utils.UuidMaker;
@@ -35,14 +33,6 @@ public class SignalResourceManager {
 	@Autowired
 	WorkService workService;
 	
-	@Autowired
-	LearnService learnService;
-	
-	@Inject
-    WordCloudEsMapper wordCloudEsMapper;
-
-	@Inject
-	NewsEsMapper newsEsMapper;
 
 	/**
 	 * key 생성

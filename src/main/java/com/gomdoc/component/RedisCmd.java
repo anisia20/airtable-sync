@@ -6,7 +6,6 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.json.bind.Jsonb;
 
-import com.google.gson.reflect.TypeToken;
 import io.quarkus.redis.client.RedisClient;
 import io.quarkus.redis.client.reactive.ReactiveRedisClient;
 import io.smallrye.mutiny.Uni;

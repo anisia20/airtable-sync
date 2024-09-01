@@ -78,8 +78,8 @@ public class JwtCmd {
 	public String generateToken(String jwtKey, String... roles) {
 		JwtClaims claims = new JwtClaims();
 		claims.setExpirationTimeMinutesInTheFuture(60);
-		claims.setSubject("kbs");
-		claims.setIssuer("api.signalstudio.io");
+		claims.setSubject("test");
+		claims.setIssuer("api.gomdoc.com");
 		claims.setAudience("using-jwt");
 		
 		JsonWebSignature jws = new JsonWebSignature();
@@ -102,8 +102,8 @@ public class JwtCmd {
 		
 		JwtClaims claims = new JwtClaims();
 		claims.setExpirationTimeMinutesInTheFuture(5);
-		claims.setSubject("kbs");
-		claims.setIssuer("api2.livere.com");
+		claims.setSubject("test");
+		claims.setIssuer("api2.gomdoc.com");
 		claims.setAudience("kbs");
 		claims.setClaim(Claims.groups.name(), Arrays.asList("User"));
 		

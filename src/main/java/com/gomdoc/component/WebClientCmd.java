@@ -3,6 +3,12 @@ package com.gomdoc.component;
 import java.net.URI;
 import java.net.URLDecoder;
 
+import io.vertx.core.json.Json;
+import io.vertx.core.json.JsonObject;
+import io.vertx.mutiny.core.Vertx;
+import io.vertx.mutiny.core.buffer.Buffer;
+import io.vertx.mutiny.ext.web.client.HttpResponse;
+import io.vertx.mutiny.ext.web.client.WebClient;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,9 +16,15 @@ import org.springframework.stereotype.Component;
 
 import io.vertx.core.http.HttpHeaders;
 
+import javax.inject.Inject;
+
 @Component
-public class WebDocCmd {
-	
+public class WebClientCmd {
+	private final WebClient webClient;
+	@Inject
+	public WebClientCmd(Vertx vertx) {
+		this.webClient = WebClient.create(vertx);
+	}
 	public Document getWebDocument(String url) {
 		Document doc;
 		Connection conn = Jsoup.connect(url);
@@ -91,5 +103,34 @@ public class WebDocCmd {
 
 		return jsonstr;
 	}
-	
+	public HttpResponse<Buffer> post(String url, Object obj) {
+		HttpResponse<Buffer> response;
+		try{
+			JsonObject body = new JsonObject(Json.encode(obj));
+			response = webClient.postAbs(url)
+//					.putHeader("Content-Type", "application/json")
+					.sendJsonAndAwait(body);
+		} catch (Exception e) {
+			return null;
+		}
+		if(response.statusCode() == 200){
+			return response;
+		}else {
+			return null;
+		}
+	}
+
+	public HttpResponse<Buffer> get(String url) {
+		HttpResponse<Buffer> response;
+		try{
+			response = webClient.getAbs(url).sendAndAwait();
+		} catch (Exception e) {
+			return null;
+		}
+		if(response.statusCode() == 200){
+			return response;
+		}else {
+			return null;
+		}
+	}
 }
