@@ -41,18 +41,6 @@ public class WorkController {
 	@Autowired
 	RedisCmd redisCmd;
 
-	@POST
-	@Path("")
-	@PermitAll
-	@Operation(
-			summary = "db2q",
-			description = "data를 mq로 이관한다. "
-	)
-	public Response db2q(@Context HttpRequest request
-						 ) {
-		return Response.status(HttpStatus.SC_BAD_REQUEST).tag("타입이 정확하지 않습니다. ").build();
-	}
-
 	@GET
     @Path("db2q/{type}/{startdate}/{enddate}")
     @PermitAll
