@@ -1,6 +1,6 @@
 package com.gomdoc.deamon;
 
-import com.gomdoc.utils.SignalUtil;
+import com.gomdoc.utils.GUtil;
 import lombok.extern.jbosslog.JBossLog;
 
 @JBossLog
@@ -24,7 +24,7 @@ public class ShutdownHooker {
             this.process.nextStop();
 
             while (this.process != null && this.process.isFinish()==false) {
-                SignalUtil.sleep(1000);
+                GUtil.sleep(1000);
                 if (System.currentTimeMillis() - e > this.max_waiting_time) {
                     break;
                 }

@@ -60,13 +60,13 @@ public class SignalResourceManager {
 			return null;
 		}
 	}
-	public SignalCommonVo getCommonConfig() {
-		String jsonstr = redisCmd.get(Def.REDIS_SIGNAL_S_CONFIG);
-		if(jsonstr == null) {
-			log.error("do not read redisdata REDIS_SIGNAL_S_CONFIG!!");
-			return null;
-		}
-		SignalCommonVo result =  jsonb.fromJson(jsonstr, SignalCommonVo.class);
-		return result;
-	}
+//	public SignalCommonVo getCommonConfig() {
+//		String jsonstr = redisCmd.get(Def.REDIS_SIGNAL_S_CONFIG);
+//		if(jsonstr == null) {
+//			log.error("do not read redisdata REDIS_SIGNAL_S_CONFIG!!");
+//			return null;
+//		}
+//		SignalCommonVo result =  jsonb.fromJson(jsonstr, SignalCommonVo.class);
+//		return result;
+//	}
 }

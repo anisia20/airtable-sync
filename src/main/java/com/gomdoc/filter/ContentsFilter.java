@@ -17,6 +17,6 @@ public class ContentsFilter implements ContainerRequestFilter {
 
 	public void filter(ContainerRequestContext requestContext) {
 		// TODO
-		//log.info("start U="+requestContext.getHeaderString+" IP="+SignalUtil.getRemoteAddr(getRemoteAddr)+" UA="+requestContext.getHeaderString("User-Agent"));
+		//log.info("start U="+requestContext.getHeaderString+" IP="+GUtil.getRemoteAddr(getRemoteAddr)+" UA="+requestContext.getHeaderString("User-Agent"));
 	}
 }

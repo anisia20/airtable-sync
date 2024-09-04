@@ -2,10 +2,7 @@ package com.gomdoc.model.vo;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -14,7 +11,13 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name = "airtable_key_info")
+@Table(
+		name = "airtable_key_info",
+		uniqueConstraints = {
+				@UniqueConstraint(columnNames = {"base_id", "table_id", "data_id"})
+		}
+)
+@IdClass(AirtableKeyInfo.class)
 public class AirtableKeyInfo implements Serializable{
 	/**
 	 * - 베이스 아이디
@@ -26,14 +29,16 @@ public class AirtableKeyInfo implements Serializable{
 	 * - 갱신일시
 	 */
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  // 자동 증가 설정
+	@Column(name = "id", nullable = false)
+	private int id;
+
 	@Column(name = "base_id", nullable = false)
 	private String baseId;
 
-	@Id
 	@Column(name = "table_id", nullable = false)
 	private String tableId;
 
-	@Id
 	@Column(name = "data_id", nullable = false)
 	private String dataId;
 

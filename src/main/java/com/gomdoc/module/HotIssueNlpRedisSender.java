@@ -3,7 +3,6 @@ package com.gomdoc.module;
 import com.gomdoc.component.SignalResourceManager;
 import com.gomdoc.config.Def;
 import com.gomdoc.deamon.DaemonG;
-import com.gomdoc.model.vo.es.RiskVo;
 import com.gomdoc.service.DeamongService;
 import lombok.extern.jbosslog.JBossLog;
 
@@ -28,27 +27,27 @@ public class HotIssueNlpRedisSender extends DaemonG {
 //			nextSleep();
 //			return;
 //		}
-		if (resourceManager.getRedisCmd().get(Def.REDIS_SIGNAL_S_CONFIG) == null) {
-			log.warn(getName()+" init, do not connect redis!!");
-			nextSleep();
-			return;
-		}
+//		if (resourceManager.getRedisCmd().get(Def.REDIS_SIGNAL_S_CONFIG) == null) {
+//			log.warn(getName()+" init, do not connect redis!!");
+//			nextSleep();
+//			return;
+//		}
 		nextExecute();
 	}
 
 	@Override
 	public void execute() {
-		log.debug(getName()+" excute job!!");
-		String redisstr = resourceManager.getRedisCmd().pop(Def.REDIS_Q_NLP_HOTISSUEKEYWORD_SEND);
-		if(redisstr == null || redisstr.isEmpty()) {
-			nextStop();
-			return;
-		}
+//		log.debug(getName()+" excute job!!");
+//		String redisstr = resourceManager.getRedisCmd().pop(Def.REDIS_Q_NLP_HOTISSUEKEYWORD_SEND);
+//		if(redisstr == null || redisstr.isEmpty()) {
+//			nextStop();
+//			return;
+//		}
 //		if (resourceManager.getWordCloudEsMapper().check() < 0) {
 //			nextInit();
 //			return;
 //		}
-		RiskVo vo = resourceManager.getJsonb().fromJson(redisstr, RiskVo.class);
+//		RiskVo vo = resourceManager.getJsonb().fromJson(redisstr, RiskVo.class);
 	}
 	
 	@Override

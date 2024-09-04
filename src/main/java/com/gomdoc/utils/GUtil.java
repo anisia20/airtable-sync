@@ -33,7 +33,7 @@ import lombok.extern.jbosslog.JBossLog;
 
 @Service
 @JBossLog
-public class SignalUtil {
+public class GUtil {
 	
 	@Inject
 	Validator validator;
@@ -63,55 +63,6 @@ public class SignalUtil {
         }else {
             return s.trim();
         }
-    }
-
-    public static String msg(String fmt, Object ... args)
-    {
-        StringBuffer sb = new StringBuffer();
-        String logx = (String)fmt;
-        int length = logx.length();
-        int pos = 0;
-        int from_pos = 0;
-        int arg_idx = 0;
-        do
-        {
-            pos = logx.indexOf("{}", from_pos);
-            if(pos < 0)
-            {
-                sb.append(logx.substring(from_pos, length));
-                break;
-            }
-            sb.append(logx.substring(from_pos, pos));
-            if(args == null)
-            {
-                sb.append("null");
-                sb.append(logx.substring(pos + 2));
-                break;
-            }
-            if(arg_idx >= args.length)
-            {
-                sb.append(logx.substring(pos));
-                break;
-            }
-            sb.append(args[arg_idx++]);
-            from_pos = pos + 2;
-        } while(true);
-
-        return sb.toString();
-    }
-
-    public static String getErrMsg( StackTraceElement e, String msg, Throwable cause, boolean isSimple ) {
-        String result = "";
-
-        if (isSimple==false) {
-            String clazz = e.getClassName().substring( e.getClassName().lastIndexOf(".") + 1 );
-            result = "[" + clazz + ":" + e.getMethodName() + "(" + e.getLineNumber() + ")] ";
-            result += "err=[" + msg + "] cause=[" + cause +"]";
-        } else {
-            result += msg;
-        }
-
-        return result;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -150,64 +101,6 @@ public class SignalUtil {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    public static String getLocInfo( Exception e ) {
-        return getLocInfo( null, e );
-    }
-
-    public static String getLocInfo( Exception e, boolean isSimple ) {
-        if (e.getCause() == null)
-            return getLocInfo( null, e, isSimple );
-        else
-            return getLocInfo( null, e.getCause(), isSimple );
-    }
-
-    public static String getLocInfo( Throwable e, boolean isSimple ) {
-        return getLocInfo( null, e, isSimple );
-    }
-
-    public static String getLocInfo( Object obj, Exception e ) {
-        if (e.getCause() == null)
-            return getLocInfo( obj, e, true );
-        else
-            return getLocInfo( obj, e.getCause(), false );
-    }
-
-    public static String getLocInfo( Object obj, Throwable ex, boolean isSimple )
-    {
-        if (obj == null)
-            return getErrMsg( ex.getStackTrace()[0], ex.getMessage(), ex, isSimple );
-
-        for (int i = 0; i < ex.getStackTrace().length; i++)
-        {
-            StackTraceElement e = ex.getStackTrace()[i];
-            if ( e.getClassName().equals( obj.getClass().getName() ) )
-                return getErrMsg( e, ex.getMessage(), ex, isSimple );
-        }
-
-        return getErrMsg( ex.getStackTrace()[0], ex.getMessage(), ex, isSimple );
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    public static String getCauseInfo( Exception e ) {
-        return getCauseInfo( e, false );
-    }
-
-    public static String getCauseInfo( Exception ex, boolean isSimple )
-    {
-        Throwable e1 = ex.getCause();
-        if (e1 == null) return "";
-
-        return getErrMsg( e1.getStackTrace()[0], e1.getMessage(), e1.getCause(), isSimple );
-    }
-
-    public static String getCauseInfo( Throwable e1, boolean isSimple )
-    {
-        if (e1 == null) return "";
-
-        return getErrMsg( e1.getStackTrace()[0], e1.getMessage(), e1.getCause(), isSimple );
-    }
 
     /** Get the current line number.
      * @return int - Current line number.
@@ -380,27 +273,6 @@ public class SignalUtil {
             res[i] = ((String) arrlist.get(i));
         }
         return res;
-    }
-
-    public static <TYPE> void llog(TYPE str) {
-        SimpleDateFormat df = new SimpleDateFormat("[HH:mm:ss:SSS]");
-
-        StackTraceElement[] ste = new Exception().getStackTrace();
-
-        System.out.println(df.format(new Date()) + ste[1].getClassName() + "::"
-                + ste[1].getMethodName() + "(" + ste[1].getLineNumber() + ")>>"
-                + str);
-    }
-
-    public static void llog(String format, Object... args) {
-        SimpleDateFormat df = new SimpleDateFormat("[HH:mm:ss:SSS]");
-
-        StackTraceElement[] ste = new Exception().getStackTrace();
-
-        String str = merge(format, args);
-        System.out.println(df.format(new Date()) + ste[1].getClassName() + "::"
-                + ste[1].getMethodName() + "(" + ste[1].getLineNumber() + ")>>"
-                + str);
     }
 
     public static String merge(String fmt, Object... args){

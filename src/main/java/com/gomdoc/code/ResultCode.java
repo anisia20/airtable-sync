@@ -15,7 +15,7 @@ public enum ResultCode {
     R_000("000", "COMMON", "성공", "성공"),
     R_100("100", "AUTH", "인증에러", "인증에러"),
     
-    R_201("201", "RANKNEWS", "uid 에러", "uid 에러"),
+    R_301("301", "WORK", "SendInfo DB 등록 실패", "SendInfo DB 등록 실패"),
     
     R_290("290", "ETC", "기타에러", "기타에러"),
     R_ETC("999", "ETC", "기타", "기타오류"),

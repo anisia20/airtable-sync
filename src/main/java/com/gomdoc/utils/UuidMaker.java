@@ -49,7 +49,7 @@ public class UuidMaker {
             String r_str = "";
 
             for (int i = 0; i * 5 < n; ++i) {
-                r_str = r_str + this.encode(SignalUtil.atoi(str.substring(i * 5, i * 5 + 5)));
+                r_str = r_str + this.encode(GUtil.atoi(str.substring(i * 5, i * 5 + 5)));
             }
 
             return r_str;
@@ -112,7 +112,7 @@ public class UuidMaker {
             return -1;
         } else {
             String decode_str = this.decode(key);
-            return decode_str.length() != 25 ? -1 : SignalUtil.atoi(decode_str.substring(19, 21));
+            return decode_str.length() != 25 ? -1 : GUtil.atoi(decode_str.substring(19, 21));
         }
     }
 

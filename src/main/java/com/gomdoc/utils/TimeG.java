@@ -74,7 +74,7 @@ public class TimeG {
                 cal.set(year, mon - 1, day, hour, min, second);
                 return cal.getTimeInMillis();
             } catch (Exception var9) {
-                SignalUtil.llog("[ERROR] toMillis14 " + var9.getMessage());
+                GUtil.llog("[ERROR] toMillis14 " + var9.getMessage());
                 return toMillis14("19700101090000");
             }
         }
