@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import com.gomdoc.config.Def;
-import com.gomdoc.model.redis.SignalCommonVo;
 import com.gomdoc.service.WorkService;
 import com.gomdoc.utils.UuidMaker;
 import lombok.Data;
@@ -19,7 +18,7 @@ import lombok.extern.jbosslog.JBossLog;
 @Data
 @Component
 @JBossLog
-public class SignalResourceManager {
+public class ResourceManager {
 	
 	protected static Hashtable<String, Object> resources = new Hashtable<String, Object>();
 	static long ServNum;

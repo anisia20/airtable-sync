@@ -1,6 +1,6 @@
 package com.gomdoc.service;
 
-import com.gomdoc.component.SignalResourceManager;
+import com.gomdoc.component.ResourceManager;
 import com.gomdoc.deamon.DaemonG;
 import lombok.extern.jbosslog.JBossLog;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class DeamongService {
 	
 	@Autowired
-	SignalResourceManager resourceManager;
+	ResourceManager resourceManager;
 
 	public HashMap<String, DaemonG> daemonGList = new HashMap<>();
 

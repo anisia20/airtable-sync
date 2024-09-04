@@ -1,7 +1,6 @@
 package com.gomdoc.module;
 
-import com.gomdoc.component.SignalResourceManager;
-import com.gomdoc.config.Def;
+import com.gomdoc.component.ResourceManager;
 import com.gomdoc.deamon.DaemonG;
 import com.gomdoc.service.DeamongService;
 import lombok.extern.jbosslog.JBossLog;
@@ -10,9 +9,9 @@ import lombok.extern.jbosslog.JBossLog;
 public class HotIssueNlpRedisSender extends DaemonG {
 
 	DeamongService parent;
-	SignalResourceManager resourceManager;
+	ResourceManager resourceManager;
 
-	public HotIssueNlpRedisSender(DeamongService parent, SignalResourceManager resourceManager, String name) {
+	public HotIssueNlpRedisSender(DeamongService parent, ResourceManager resourceManager, String name) {
 		setName(name);
 		this.parent = parent;
 		this.resourceManager = resourceManager;
