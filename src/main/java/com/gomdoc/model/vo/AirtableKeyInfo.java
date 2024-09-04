@@ -17,7 +17,6 @@ import java.io.Serializable;
 				@UniqueConstraint(columnNames = {"base_id", "table_id", "data_id"})
 		}
 )
-@IdClass(AirtableKeyInfo.class)
 public class AirtableKeyInfo implements Serializable{
 	/**
 	 * - 베이스 아이디
