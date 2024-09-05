@@ -8,7 +8,7 @@ import javax.json.bind.JsonbConfig;
 import javax.json.bind.config.PropertyNamingStrategy;
 import javax.json.bind.config.PropertyOrderStrategy;
 
-public class SignalJsonbConfig {
+public class GJsonbConfig {
 	
 	// Replaces the CDI producer for JsonbConfig built into Quarkus
     @Dependent
