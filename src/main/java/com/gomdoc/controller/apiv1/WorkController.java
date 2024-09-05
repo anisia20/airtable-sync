@@ -8,6 +8,8 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.gomdoc.model.dto.FieldInfoDto;
+import com.gomdoc.model.dto.KeyInfoDto;
 import com.gomdoc.model.dto.SendInfoDto;
 import io.quarkus.vertx.web.Body;
 import org.apache.http.HttpStatus;
@@ -44,5 +46,33 @@ public class WorkController {
 		HttpHeaders headers = request.getHttpHeaders();
 //		log.info("start ranknews IP="+GUtil.getRemoteIpAddr(request)+", SUA="+headers.getHeaderString("sec-ch-ua")+",SUM="+headers.getHeaderString("sec-ch-ua-mobile")+", UA="+headers.getHeaderString("User-Agent")+", C="+headers.getCookies());
 		return workService.setSendInfo(dto);
+	}
+
+	@POST
+	@Path("fieldinfo")
+	@PermitAll
+	@Operation(
+			summary = "work",
+			description = "fieldinfo 등록한다."
+	)
+	public Response setAirtableFieldInfo(@Context HttpRequest request,
+								@Body FieldInfoDto dto) {
+		HttpHeaders headers = request.getHttpHeaders();
+//		log.info("start ranknews IP="+GUtil.getRemoteIpAddr(request)+", SUA="+headers.getHeaderString("sec-ch-ua")+",SUM="+headers.getHeaderString("sec-ch-ua-mobile")+", UA="+headers.getHeaderString("User-Agent")+", C="+headers.getCookies());
+		return workService.setFieldInfo(dto);
+	}
+
+	@POST
+	@Path("keyinfo")
+	@PermitAll
+	@Operation(
+			summary = "work",
+			description = "keyinfo 등록한다."
+	)
+	public Response setAirtableKeyInfo(@Context HttpRequest request,
+										 @Body KeyInfoDto dto) {
+		HttpHeaders headers = request.getHttpHeaders();
+//		log.info("start ranknews IP="+GUtil.getRemoteIpAddr(request)+", SUA="+headers.getHeaderString("sec-ch-ua")+",SUM="+headers.getHeaderString("sec-ch-ua-mobile")+", UA="+headers.getHeaderString("User-Agent")+", C="+headers.getCookies());
+		return workService.setKeyInfo(dto);
 	}
 }

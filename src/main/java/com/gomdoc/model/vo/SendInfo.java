@@ -40,8 +40,11 @@ public class SendInfo implements Serializable {
     @Column(name = "send_cnt", nullable = false)
     private String sendCnt;
 
-    @Column(name = "send_limit")
+    @Column(name = "send_limit", nullable = false)
     private String sendLimit;
+
+    @Column(name = "token", nullable = false)
+    private String token;
 
     @Column(name = "create_dt")
     private String createDt;
